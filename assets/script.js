@@ -1,13 +1,14 @@
 var cityArray = [];
+var cithNameEl;
 
 function getData() {
-    var cityNameEl = document.querySelector("#formInputCity").value;
-    if (!cityNameEl) {
+    var cityName = cityNameEl.value;
+    if (!cityName) {
         alert("Please enter a city name!");
     }
-    savCities(cityNameEl);
+    savCities(cityName);
     var apiUrl = "https://api.openweathermap.org/data/2.5//weather?q="
-        + cityNameEl + "&appid=d26f4f6b4558c822bbb01131aac44003";
+        + cityName + "&appid=d26f4f6b4558c822bbb01131aac44003";
     fetch(apiUrl)
         .then(function (weatherResponse) {
             return weatherResponse.json();
@@ -31,7 +32,7 @@ function getData() {
         .then(function (response) {
             console.log(response);
             var currentWeatherArray = [response.current.temp, response.current.humidity, response.current.wind_speed,
-                 response.current.uvi, response.weather.icon];
+                 response.current.uvi, response.current.weather[0].icon];
             displayWeather(currentWeatherArray);
         }).catch(function (error) {
             console.log(error);
@@ -43,20 +44,25 @@ function savCities(cityName) {
     localStorage.setItem("citiesKey", JSON.stringify(cityArray));
 }
 function displayWeather(weatherArray) {
-    var 
+    var currentDate = moment().format("MMMM Do, YYYY");
+    var iconUrl = `http://openweathermap.org/img/wn/${weatherArray[4]}@2x.png`;  
+    $("#city-title").text(cityNameEl.value.toUpperCase()); 
+
+     $("#date").text(currentDate);
+     $("#weather-icon").attr("src", iconUrl);
+     $("#temp").text(weatherArray[0] + "F");
+     $("#humidity").text(weatherArray[1] + "%");
+     $("#wind-speed").text(weatherArray[2] + "m/h");
+     $("#uvi").text(weatherArray[3]);
 }
 
 
 
 
-
-
-
-
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
+    cityNameEl = document.querySelector("#formInputCity");
+    cityArray = [];
+    cityArray = JSON.parse(localStorage.getItem("citiesKey"));
     var searchBtn = document.getElementById("search-btn");
     searchBtn.addEventListener("click", getData);
     $("#form-submit-city").submit(function (event) {

@@ -6,3 +6,9 @@
   margin-top: 40px;
   margin-left: 0px;
 }
+.jumbotron {
+  width: 500px;
+  float: right;
+  margin: 0px;
+  padding: 0px;
+}

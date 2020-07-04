@@ -9,6 +9,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        
+
     <link rel="stylesheet" href="assets\style.css" />
     <title>Weather Dashboard</title>
 </head>
@@ -24,6 +26,16 @@
                 <input type="text" class="form-control mb-2 mr-2 ml-2" id="formInputCity" name= "formInputCity" placeholder="City">
                 <button type="submit" class="btn search-btn mb-2" id="search-btn">Search</button>
             </form>
+            <div class="jumbotron">
+                <h1 class="city-title" id="city-title"></h1>
+                <h2 class="date" id="date"></h2>
+                <img id="weather-icon"/>
+                <p class="temp">Temp <span id="temp"></span></p>
+                <p class="humidity">Humidity <span id="humidity"></span></p>
+                <p class="wind-speed">Wind Speed <span id="wind-speed"></span></p>
+                <p class="uvi">UV Index <span id="uvi"></span></p>
+            </div>
+            
             <ul class="list-group"></ul> 
         </div>
     <!-- Optional JavaScript -->
@@ -37,6 +49,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js" integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg==" crossorigin="anonymous"></script>
     <script src="assets\script.js"></script>
 </body>
 
