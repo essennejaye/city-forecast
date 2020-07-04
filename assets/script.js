@@ -1,5 +1,5 @@
 var cityArray = [];
-var cithNameEl;
+var cityNameEl;
 
 function getData() {
     var cityName = cityNameEl.value;
@@ -30,34 +30,45 @@ function getData() {
             }
         })
         .then(function (response) {
-            console.log(response);
             var currentWeatherArray = [response.current.temp, response.current.humidity, response.current.wind_speed,
-                 response.current.uvi, response.current.weather[0].icon];
+            response.current.uvi, response.current.weather[0].icon];
+
             displayWeather(currentWeatherArray);
         }).catch(function (error) {
             console.log(error);
         })
 }
-
+// why aren't cities being pushed to array?
 function savCities(cityName) {
-    cityArray.push(cityName);
-    localStorage.setItem("citiesKey", JSON.stringify(cityArray));
+    cityArray.forEach((cityName) => {
+        if (!cityArray.includes(cityName)) {
+            cityArray.push(cityName);
+        }
+        localStorage.setItem("citiesKey", JSON.stringify(cityArray));
+
+    });
+   // localStorage.setItem("citiesKey", JSON.stringify(cityArray));
 }
 function displayWeather(weatherArray) {
     var currentDate = moment().format("MMMM Do, YYYY");
-    var iconUrl = `http://openweathermap.org/img/wn/${weatherArray[4]}@2x.png`;  
-    $("#city-title").text(cityNameEl.value.toUpperCase()); 
-
-     $("#date").text(currentDate);
-     $("#weather-icon").attr("src", iconUrl);
-     $("#temp").text(weatherArray[0] + "F");
-     $("#humidity").text(weatherArray[1] + "%");
-     $("#wind-speed").text(weatherArray[2] + "m/h");
-     $("#uvi").text(weatherArray[3]);
+    var iconUrl = `http://openweathermap.org/img/wn/${weatherArray[4]}@2x.png`;
+    $("#city-title").text(cityNameEl.value.toUpperCase());
+    $("#date").text(currentDate);
+    $("#weather-icon").attr("src", iconUrl);
+    $("#temp").text(weatherArray[0] + "F");
+    $("#humidity").text(weatherArray[1] + "%");
+    $("#wind-speed").text(weatherArray[2] + "m/h");
+    var uvIndex = parseFloat(weatherArray[3]);
+    if (uvIndex <= 2.9) {
+        $("#uvi").text(uvIndex).addClass("low");
+    }
+    else if (uvIndex <= 7.9) {
+        $("#uvi").text(uvIndex).addClass("moderate");
+    }
+    else {
+        $("#uvi").text(uvIndex).addClass("severe");
+    }
 }
-
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
     cityNameEl = document.querySelector("#formInputCity");
