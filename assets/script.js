@@ -47,6 +47,7 @@ function getData(cityName) {
             var dailyWeatherArray = response.daily;
             displayDailyWeather(dailyWeatherArray);
             savCities(cityName);
+            loadCities();
         }).catch(function (error) {
             console.log(error);
         })
@@ -54,8 +55,9 @@ function getData(cityName) {
 
 function savCities(cityName) {
     if (!cityArray.includes(cityName)) {
-        cityArray.push(cityName);
+        cityArray.unshift(cityName);
     }
+    cityArray = cityArray.slice(0, 10);
     localStorage.setItem("citiesKey", JSON.stringify(cityArray));
 }
 // create jumbotron to display current weather and date
@@ -112,7 +114,7 @@ function loadCities() {
         var cityButton = $("<button>")
             .addClass("city-choice")
             .attr("city-name", cityArray[i])
-            .text(cityArray[i])
+            .text(cityArray[i].toUpperCase())
             .click(onButtonClick);
         $(cityListEl).append(cityButton);
         $(".list-group").append(cityListEl);
@@ -121,10 +123,9 @@ function loadCities() {
 
 $(document).ready(function () {
     cityNameEl = $("#formInputCity");
-    $("#search-btn").on("click", getNewCityData);
     $("#form-submit-city").submit(function (event) {
         event.preventDefault();
-        loadCities();
+        getNewCityData();
     });
     loadCities();
 })
