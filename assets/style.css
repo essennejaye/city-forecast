@@ -1,29 +1,96 @@
 .title {
   text-align: center;
   padding: 10px, 0, 0, 30px;
+  color: black;
+  background-color: cornflowerblue;
 }
 .container {
   margin-top: 40px;
   margin-left: 0px;
 }
 .jumbotron {
-  width: 500px;
+  width: 600px;
+  height: 600px;
   float: right;
   padding: 15px;
-  background-color: white;
+  background-color: cornflowerblue;
   text-align: center;
-  border: 1px solid black;
+  border: 0.5em solid cornflowerblue;
+  border-radius: 100%;
+  position: relative;
+  bottom: 60px;
+  left: 143px;
+  line-height: 2.0;
+  color: white;
 }
 .low {
-  background-color: green;
+  background-color: rgba(0, 128, 0, 0.6);
 }
 .moderate {
-  background-color: yellow;
+  background-color: rgba(255, 255, 0, 0.6);
 }
 .severe {
-  background-color: red;
+  background-color: rgba(255, 0, 0, 0.6);
 }
 p {
   font-size: 20px;
   font-weight: 700;
+}
+.card {
+  flex-direction: row;
+  display: inline-flex;
+}
+.city-name {
+  padding: 8px;
+  list-style: none;
+}
+.list-group {
+  display: flex;
+  padding-left: 21px;
+  list-style: none;
+}
+.city-choice {
+  width: 250px;
+  border-radius: 10px;
+  font-weight: 600;
+  background-color: ghostwhite;
+  height: 40px;
+  border: 2px solid cornflowerblue;
+}
+.city-choice:hover {
+  background-color: cornflowerblue;
+  color: ghostwhite;
+}
+.btn {
+  background-color: ghostwhite;
+  border: 2px solid cornflowerblue;
+  border-radius: 3px;
+}
+.btn:hover {
+  background-color: cornflowerblue;
+  color: ghostwhite;
+}
+.daily-container {
+  display: inline-flex;
+  float: right;
+  color: white;
+}
+.daily-div {
+  padding: 15px;
+  line-height: 1.1;
+  margin: 0px 10px 0 0;
+  border-radius: 15px;
+  background-color: cornflowerblue;
+}
+.daily-icon {
+  height: 50px;
+}
+.date-item {
+  font-size: 20px;
+}
+.temp-max, .temp-min, .daily-humidity {
+  font-size: 15px;
+  margin: 7px;
+}.form-control {
+  border: 0.4px solid cornflowerblue;
 }
