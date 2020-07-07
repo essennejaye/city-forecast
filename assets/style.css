@@ -1,8 +1,154 @@
+/* header */
+
 .title {
   text-align: center;
-  padding: 10px, 0, 0, 30px;
+  color: black;
+  background-color: cornflowerblue;
 }
+
+/*  main body */
+
 .container {
-  margin-top: 40px;
-  margin-left: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+/*  input form and  search button */
+
+.form-inline {
+  border: 0.4px solid cornflowerblue;
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  background-color: ghostwhite;
+  border: 2px solid cornflowerblue;
+  border-radius: 3px;
+  height: fit-content;
+}
+
+.btn:hover {
+  background-color: cornflowerblue;
+  color: ghostwhite;
+}
+
+/* first nested flexbox with city buttons and current weather display */
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* current weather display */
+
+.current-container {
+  width: 500px;
+  height: 500px;
+  padding: 15px;
+  background-color: cornflowerblue;
+  text-align: center;
+  border: 0.5em solid cornflowerblue;
+  border-radius: 15px;
+  line-height: 1.5;
+  color: white;
+}
+
+/* uv index severity indicator states */
+
+.low {
+  background-color: rgba(0, 128, 0, 0.6);
+}
+
+.moderate {
+  background-color: rgba(255, 255, 0, 0.6);
+}
+
+.severe {
+  background-color: rgba(255, 0, 0, 0.6);
+}
+
+/* generated list group with city named buttons */
+
+.list-group {
+  display: flex;
+  padding-left: 21px;
+  list-style: none;
+  flex-direction: column;
+}
+
+.city-name {
+  padding: 8px;
+  list-style: none;
+}
+
+.city-choice {
+  width: 250px;
+  border-radius: 10px;
+  font-weight: 600;
+  background-color: ghostwhite;
+  height: 40px;
+  border: 2px solid cornflowerblue;
+}
+
+.city-choice:hover {
+  background-color: cornflowerblue;
+  color: ghostwhite;
+}
+
+/* second nested container */
+
+.days-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  text-align: center;
+}
+
+.day-5-forecast {
+  height: fit-content;
+  width: 100%;
+  margin-left: 325px;
+}
+
+.daily-container {
+  display: flex;
+  color: white;
+}
+
+/* cards with future daily forecast */
+
+.daily-div {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  line-height: 1.1;
+  margin: 0px 10px 0 0;
+  border-radius: 15px;
+  background-color: cornflowerblue;
+}
+
+.daily-icon {
+  height: 50px;
+  width: 50px;
+  align-self: center;
+}
+
+.date-item {
+  font-size: 20px;
+}
+
+.temp-max, .temp-min, .daily-humidity {
+  font-size: 15px;
+  margin: 7px;
+}
+
+/* utility class */
+
+p {
+  font-size: 20px;
+  font-weight: 700;
 }
