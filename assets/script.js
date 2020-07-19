@@ -48,7 +48,7 @@ function getData(cityName) {
             response.current.uvi, response.current.weather[0].icon];
             displayCurrentWeather(cityName, currentWeatherArray);
             var dailyWeatherArray = response.daily;
-            displayDailyWeather(dailyWeatherArray);
+            displayDailyWeather(dailyWeatherArray, cityName);
             // send city name to save function, load cities is called here to add just inputted city to localstorage
             savCities(cityName);
             loadCities();
@@ -67,6 +67,7 @@ function savCities(cityName) {
 }
 // create jumbotron to display current weather and date
 function displayCurrentWeather(cityName, weatherArray) {
+    $("#uvi").text(uvIndex).removeClass();
     // use moment to get cuurent date
     var currentDate = moment().format("MMMM Do, YYYY");
     // use openweather url + icon code to get weather icon
@@ -74,23 +75,24 @@ function displayCurrentWeather(cityName, weatherArray) {
     $("#city-title").text(cityName.toUpperCase());
     $("#date").text(currentDate);
     $("#weather-icon").attr("src", iconUrl);
-    $("#temp").text(weatherArray[0] + "F");
+    $("#temp").text(weatherArray[0].toFixed() + "\u00B0F");
     $("#humidity").text(weatherArray[1] + "%");
     $("#wind-speed").text(weatherArray[2] + "m/h");
     // parse uvi index to test for condition and assign a color
-    var uvIndex = parseFloat(weatherArray[3]);
-    if (uvIndex <= 2.9) {
+    var uvIndex = weatherArray[3].toFixed(2);
+    if (uvIndex <= 2.99) {
         $("#uvi").text(uvIndex).addClass("low");
     }
-    else if (uvIndex <= 7.9) {
+    else if (uvIndex <= 7.99) {
         $("#uvi").text(uvIndex).addClass("moderate");
     }
     else {
         $("#uvi").text(uvIndex).addClass("severe");
     }
+    $(".current-container").show();
 }
 // create cards for 5 day forecast
-function displayDailyWeather(dailyWeatherArray) {
+function displayDailyWeather(dailyWeatherArray, cityName) {
     $("#daily-container").empty();
     // use a for loop to get 5 day forecast, create cards dynamically
     // first day in data is current day so skip and get next 5
@@ -102,13 +104,15 @@ function displayDailyWeather(dailyWeatherArray) {
         var iconUrl = `http://openweathermap.org/img/wn/${dailyWeatherArray[i].weather[0].icon}@2x.png`;
         var dailyIconEl = $("<img>").addClass("daily-icon").attr("src", iconUrl);
         $(dailyDivEl).append(dailyIconEl);
-        var dailyHighEl = $("<p>").addClass("temp-max").text("High " + dailyWeatherArray[i].temp.max + "F");
-        var dailyLowEl = $("<p>").addClass("temp-min").text("Low " + dailyWeatherArray[i].temp.min + "F");
+        var dailyHighEl = $("<p>").addClass("temp-max").text("High " + dailyWeatherArray[i].temp.max.toFixed() + "\u00B0F");
+        var dailyLowEl = $("<p>").addClass("temp-min").text("Low " + dailyWeatherArray[i].temp.min.toFixed() + "\u00B0F");
         $(dailyDivEl).append(dailyHighEl).append(dailyLowEl);
         var dailyHumidity = $("<p>").addClass("daily-humidity").text("Humidity " + dailyWeatherArray[i].humidity + "%");
         $(dailyDivEl).append(dailyHumidity);
         $("#daily-container").append(dailyDivEl);
     }
+    $(".daily-city-name").text(cityName.toUpperCase());
+    $(".days-container").show();
 }
 // function to retreive stored city name from clicked city button to fetch data 
 function onButtonClick() {
@@ -131,9 +135,10 @@ function loadCities() {
         $(".list-group").append(cityListEl);
     }
 }
-
+// load html hide containers until needed
 $(document).ready(function () {
     cityNameEl = $("#formInputCity");
+    $(".current-container, .days-container").hide();
     $("#form-submit-city").submit(function (event) {
         event.preventDefault();
         getNewCityData();

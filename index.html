@@ -21,7 +21,6 @@
     <!-- flexbox container containing 2 nestedflexbox containers -->
     <div class="container">
         <form class="form-inline" id="form-submit-city">
-            <!-- <label class="sr-only" for="formInputCity">City</label> -->
             <input type="text" class="form-control mb-2 mr-2 ml-2" id="formInputCity" name="formInputCity"
                 placeholder="Search for a City">
             <button type="submit" class="btn search-btn mb-2" id="search-btn">Search</button>
@@ -30,6 +29,7 @@
         <div class="main">
             <!-- container for generated city buttons -->
             <ul class="list-group"></ul>
+            <!-- container for current forecast -->
             <div class="current-container">
                 <h1 class="city-title" id="city-title"></h1>
                 <h2 class="date" id="date"></h2>
@@ -42,7 +42,7 @@
         </div>
         <!-- second nested flexbox -->
         <div class="days-container">
-            <p class="day-5-forecast">5 Day Forecast</p>
+            <p class="day-5-forecast">5 Day Forecast for <span class="daily-city-name"></span></p>
             <!-- container for generated 5 day forecast -->
             <div class="daily-container text-center" id="daily-container">
             </div>

@@ -1,9 +1,13 @@
+:root {
+  --primary-color: cornflowerblue;
+  --secondary-color: ghostwhite
+}
 /* header */
 
 .title {
   text-align: center;
   color: black;
-  background-color: cornflowerblue;
+  background-color: var(--primary-color);
 }
 
 /*  main body */
@@ -16,23 +20,26 @@
 /*  input form and  search button */
 
 .form-inline {
-  border: 0.4px solid cornflowerblue;
   height: fit-content;
   width: fit-content;
   display: flex;
   align-items: center;
+  margin: 20px 0px 0px 0px;
 }
 
 .btn {
-  background-color: ghostwhite;
-  border: 2px solid cornflowerblue;
+  background-color: var(--secondary-color);
+  border: 2px solid var(--primary-color);
   border-radius: 3px;
   height: fit-content;
 }
+.form-control {
+  border: 1px solid var(--primary-color);
+}
 
 .btn:hover {
-  background-color: cornflowerblue;
-  color: ghostwhite;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 /* first nested flexbox with city buttons and current weather display */
@@ -41,6 +48,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin: 25px;
 }
 
 /* current weather display */
@@ -49,9 +57,9 @@
   width: 500px;
   height: 500px;
   padding: 15px;
-  background-color: cornflowerblue;
+  background-color: var(--primary-color);
   text-align: center;
-  border: 0.5em solid cornflowerblue;
+  border: 0.5em solid var(--primary-color);
   border-radius: 15px;
   line-height: 1.5;
   color: white;
@@ -89,14 +97,14 @@
   width: 250px;
   border-radius: 10px;
   font-weight: 600;
-  background-color: ghostwhite;
+  background-color: var(--secondary-color);
   height: 40px;
-  border: 2px solid cornflowerblue;
+  border: 2px solid var(--primary-color);
 }
 
 .city-choice:hover {
-  background-color: cornflowerblue;
-  color: ghostwhite;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 /* second nested container */
@@ -106,6 +114,7 @@
   flex-wrap: wrap;
   justify-content: flex-end;
   text-align: center;
+  margin: 20px;
 }
 
 .day-5-forecast {
@@ -128,7 +137,7 @@
   line-height: 1.1;
   margin: 0px 10px 0 0;
   border-radius: 15px;
-  background-color: cornflowerblue;
+  background-color: var(--primary-color);
 }
 
 .daily-icon {
