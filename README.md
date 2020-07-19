@@ -1,9 +1,9 @@
 # City-Forecast
 * GIVEN a weather dashboard with form inputs
-* * WHEN I search for a city
-* * THEN I am presented with current and future conditions for that city and that city is added to the search history
-* * WHEN I view current weather conditions for that city
-* * THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the *    humidity, the wind speed, and the UV index
+* WHEN I search for a city
+* THEN I am presented with current and future conditions for that city and that city is added to the search history
+* WHEN I view current weather conditions for that city
+* THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
 * WHEN I view the UV index
 * THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
 * WHEN I view future weather conditions for that city
@@ -11,12 +11,12 @@
 * WHEN I click on a city in the search history
 * THEN I am again presented with current and future conditions for that city
 
-https://essennejaye.github.io/city-forecast/
+
 
 ## Screenshots
 
-![](assets/images/screenshot1.png)
-![](assets/images/screenshot2.png)
+![](assets/images/forecast_screenshot1.png)
+![](assets/images/forecast_screenshot2.png)
 
 ## Code
 ````
@@ -62,3 +62,5 @@ function getData(cityName) {
         })
 }
 ````
+
+https://essennejaye.github.io/city-forecast/
